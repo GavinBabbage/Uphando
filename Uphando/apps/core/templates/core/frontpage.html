@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h2 class="subtitle has-text-centered">Most Recent Notices</h2>
+
+    <div class="columns">
+        {% for job in jobs %}
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-content">
+                                <p class="title is-4">{{ job.title }}</p>
+                                <p class="subtitle is-6">{{ job.created_at }}</p>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            {{ job.short_description }}
+
+                            <hr>
+                            <br>
+                            {{ job.company_address }}
+                            <hr>
+
+
+                            <a href="{% url 'job_detail' job.id %}">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

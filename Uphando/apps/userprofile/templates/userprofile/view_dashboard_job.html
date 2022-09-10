@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="Name of Study">View job - {{ job.title }}</h1>
+
+    <a href="{% url 'edit_job' job.id %}" class="button is-success mb-4">Edit</a>
+
+    <p class="is-size-4">{{ job.short_description }}</p>
+
+    <p>{{ job.long_description }}</p>
+
+    <b>Name of Researcher: </b>{{ job.company_name}}<br>
+    <b>Remuneration: </b>{{ job.company_address}}<br>
+    <b>Ethic Disclaimer: </b>{{ job.company_place}}<br>
+    <b>Contact Details: </b>{{ job.company_country}}<br>
+    <b>Application Deadline: </b>{{ job.deadline}}<br>
+
+    {% for application in job.applications.all %}
+        <a href="{% url 'view_application' application.id %}">{{ application.created_by.username }}</a>
+    {% endfor %}
+{% endblock %}
