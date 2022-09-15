@@ -19,11 +19,14 @@ from django.contrib.auth import views
 
 from apps.core.views import frontpage, signup
 
+from apps.job.views import add_job
+
 urlpatterns = [
     path('', frontpage, name='frontpage'),
     path('signup/', signup, name='signup'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('login/', views.LoginView.as_view(template_name='core/login.html'), name='login'),
+    path('jobs/', add_job, name='job'),
     path('admin/', admin.site.urls),
     # path('dashboard/', include('apps.userprofile.urls')),
     # path('notifications/', include('apps.notification.urls')),
