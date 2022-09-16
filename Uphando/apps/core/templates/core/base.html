@@ -2,6 +2,18 @@
 {% load static %}
 <html>
     <head>
+
+    <style>
+		body,
+		html
+		{
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: PapayaWhip !important;
+		}
+	</style>
+
         <!-- Meta -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +37,9 @@
 
             <div class="navbar-menu">
                 <div class="navbar-end">
-                    <a href="{% url 'search' %}" class="navbar-item">Search</a>
+                    <a href="{% url 'search' %}" class="navbar-item"><i class="fa-solid fa-magnifying-glass"></i>
+
+</a>
 
 
                     <div class="navbar-item">

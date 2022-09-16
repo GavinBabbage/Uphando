@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
+
     <div id="search-app">
         <h1 class="title">Search</h1>
 
@@ -8,7 +9,7 @@
             <div class="columns">
                 <div class="column is-4">
                     <div class="field">
-                        <label>Query</label>
+                        <label>Enter the name of the study</label>
 
                         <div class="control">
                             <input type="text" name="query" class="input" v-model="query">
@@ -63,7 +64,7 @@
         data() {
             return {
                 query: '',
-<!--                company_size: '',-->
+<!--                company_name: '',-->
                 jobs: []
             }
         },
@@ -72,7 +73,7 @@
             performSearch() {
                 var data = {
                     'query': this.query
-<!--                    'company_size': this.company_size-->
+<!--                    'company_name': this.company_name-->
                 }
 
                 fetch('/jobs/api/search/', {

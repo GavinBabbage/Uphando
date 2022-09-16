@@ -3,12 +3,8 @@
 {% load social_share %}
 
 {% block content %}
-    <h1 class="Name of Study">View job - {{ job.title }}</h1>
+    <p class="is-size-1">{{ job.title }}</p>
 
-
-    {% if job.created_by == request.user %}
-        <a href="{% url 'edit_job' job.id %}" class="button is-success mb-4">Edit</a>
-    {% endif %}
 
     <div class="buttons">
         {% post_to_facebook object_or_url '<i class="fa-brands fa-facebook-f"></i>&nbsp;&nbsp;&nbsp;' %}
@@ -17,7 +13,8 @@
         {% post_to_telegram "New Notice: {{object.title}}. Check it out!" object_or_url '<i class="fa-brands fa-telegram"></i>&nbsp;&nbsp;&nbsp;' %}
         {% send_email object.title "New Song: {{object.title}}. Check it out!" object_or_url '<i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;&nbsp;' %}
     </div>
-
+    <p class="is-size-4">{{ job.short_description }}</p>
+    <br>
 <!--    {% if request.user.jobs.created_by == job.created_by %}-->
 <!--        <a href="{% url 'edit_job' job.id %}" class="button is-success mb-4">Edit</a>-->
 <!--    {% else %}-->
@@ -25,15 +22,22 @@
 
 <!--    {% endif %}-->
 
-    <p class="is-size-4">{{ job.short_description }}</p>
+<!--    <p class="is-size-4">{{ job.short_description }}</p>-->
 
-    <p>{{ job.long_description }}</p>
+
 
     <b>Name of Researcher: </b>{{ job.company_name}}<br>
+<!--    <b>Description: </b>{{ job.short_description}}<br>-->
     <b>Remuneration: </b>{{ job.company_address}}<br>
+    <b>Participation Criteria & Expectations of Participants: </b>{{ job.long_description}}<br>
     <b>Ethic Disclaimer: </b>{{ job.company_place}}<br>
     <b>Contact Details: </b>{{ job.company_country}}<br>
     <b>Application Deadline: </b>{{ job.deadline}}<br>
+    <br>
+
+    {% if job.created_by == request.user %}
+       <a href="{% url 'edit_job' job.id %}" class="button is-success mb-4">Edit</a>
+    {% endif %}
 
     {% for application in job.applications.all %}
         <a href="{% url 'view_application' application.id %}">{{ application.created_by.username }}</a>
