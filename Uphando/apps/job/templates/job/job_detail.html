@@ -4,7 +4,9 @@
 {% load social_share %}
 
 {% block content %}
-<p class="is-size-1"><strong style="color:white">{{ job.title }}</strong></p>
+<div class="flex-container" style="display:flex-block; overflow-x:scroll;">
+    <p class="is-size-1"><strong style="color:white">{{ job.title }}</strong></p>
+</div>
 
     <div class="buttons">
         {% post_to_facebook job.title '<i class="fa-brands fa-facebook-f fa-2x"></i>' %}
