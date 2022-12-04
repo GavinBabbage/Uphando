@@ -61,9 +61,9 @@
             </div>
 
         {% else %}
+            <br>
             <a href="{% url 'frontpage' %}" class="btn btn-dark" style="color:white;">Back</a>
         {% endif %}
-
 
         {% for application in job.applications.all %}
             <a href="{% url 'view_application' application.id %}">{{ application.created_by.username }}</a>
