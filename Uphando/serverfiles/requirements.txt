@@ -5,3 +5,10 @@ fontawesomefree==6.2.0
 sqlparse==0.4.2
 tzdata==2022.2
 pytz==2020.1
+certifi==2022.6.15
+distlib==0.3.6
+filelock==3.8.0
+pipenv==2022.9.4
+platformdirs==2.5.2
+virtualenv==20.16.4
+virtualenv-clone==0.5.7
