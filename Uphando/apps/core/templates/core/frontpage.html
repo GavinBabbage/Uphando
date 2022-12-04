@@ -1,34 +1,44 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-    <h2 class="subtitle has-text-centered">Most Recent Notices</h2>
+<!--<div style="overflow-x:scroll;">-->
+<div>
+    <div class=" row justify-content-center" align="center">
+        <h1 class="subtitle has-text-centered; is-size-1" ><strong style="color: white;">Most Recent Notices</strong></h1>
+        <hr>
+    </div>
 
-    <div class="columns">
-        {% for job in jobs %}
-            <div class="col-md-3">
-                <div class="card">
+    <div class="flex-container" align="middle" style="display:flex;justify-content:center; overflow-x:scroll;">
+        <div class="card-column" style="width: 70rem;" align="centre">
+          <div class="card" style = "background:#7abecc;">
+            {% for job in jobs %}
+              <br>
+                <div class="card" align="middle">
                     <div class="card-content">
                         <div class="media">
-                            <div class="media-content">
+                            <div class="media-content "align="left">
                                 <p class="title is-4">{{ job.title }}</p>
                                 <p class="subtitle is-6">{{ job.created_at }}</p>
                             </div>
                         </div>
-
                         <div class="content">
                             {{ job.short_description }}
-
-                            <hr>
                             <br>
-                            {{ job.company_address }}
-                            <hr>
-
-
-                            <a href="{% url 'job_detail' job.id %}">View</a>
+                            <br>
+                            {{ job.Remuneration }}
+                            <br>
+                            <br>
+                            <a href="{% url 'job_detail' job.id %}" style="text-decoration:none;">View</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
     </div>
+</div>
+
+
+
+
 {% endblock %}

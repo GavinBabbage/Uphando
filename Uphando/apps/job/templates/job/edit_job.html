@@ -1,6 +1,8 @@
 {% extends 'core/base.html' %}
-
+{% load bootstrap5 %}
+{% load static %}
 {% block content %}
+
     <div id="edit-job-app">
         <h1 class="title">Edit Notice</h1>
 
@@ -10,7 +12,7 @@
             {% if form.errors %}
                 {% for error in form.errors %}
                     <div class="notification is-danger">
-                        {{ error }}
+                        Please re-enter the application deadline.
                     </div>
                 {% endfor %}
             {% endif %}
@@ -33,7 +35,7 @@
                 <label>Name of Researcher</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="company_name" id="id_company_name" v-model="company_name">
+                    <input class="input" type="text" name="Name_of_Researcher" id="id_Name_of_Researcher" v-model="Name_of_Researcher" value="{% if job.title %}{{ job.title }}{% endif %}">
                 </div>
             </div>
 
@@ -41,7 +43,7 @@
                 <label>Short description</label>
 
                 <div class="control">
-                    <textarea class="textarea" name="short_description" id="id_short_description" v-model="short_description"></textarea>
+                    <textarea class="textarea" name="short_description" id="id_short_description" v-model="short_description">{% if job.short_description %}{{ job.short_description }}{% endif %}</textarea>
                 </div>
             </div>
 
@@ -49,7 +51,7 @@
                 <label>Remuneration</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="company_address" id="id_company_address" value="{% if job.company_address %}{{ job.company_address }}{% endif %}">
+                    <input class="input" type="text" name="Remuneration" id="id_Remuneration" v-model="Remuneration" value="{% if job.Remuneration %}{{ job.Remuneration }}{% endif %}">
                 </div>
             </div>
 
@@ -57,7 +59,7 @@
                 <label>Participation Criteria & Expectations of Participants</label>
 
                 <div class="control">
-                    <textarea class="textarea" name="long_description" id="id_long_description">{% if job.long_description %}{{ job.long_description }}{% endif %}</textarea>
+                    <textarea class="textarea" name="long_description" id="id_long_description" v-model="long_description">{% if job.long_description %}{{ job.long_description }}{% endif %}</textarea>
                 </div>
             </div>
 
@@ -65,7 +67,7 @@
                 <label>Ethic Disclaimer</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="company_place" id="id_company_place" value="{% if job.company_place %}{{ job.company_place }}{% endif %}">
+                    <input class="input" type="text" name="Ethic_Disclaimer" id="id_Ethic_Disclaimer" v-model="Ethic_Disclaimer" value="{% if job.Ethic_Disclaimer %}{{ job.Ethic_Disclaimer }}{% endif %}">
                 </div>
             </div>
 
@@ -73,7 +75,7 @@
                 <label>Contact Details</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="company_country" id="id_company_country" value="{% if job.company_country %}{{ job.company_country }}{% endif %}">
+                    <input class="input" type="text" name="Contact_Details" id="id_Contact_Details" v-model="Contact_Details" value="{% if job.Contact_Details %}{{ job.Contact_Details }}{% endif %}">
                 </div>
             </div>
 
@@ -82,13 +84,15 @@
                 <label>Application Deadline</label>
 
                 <div class="control">
-                            <input type="date" name="deadline" id="deadline" value="{% if job.deadline %}{{ job.deadline }}{% endif %}">
+                            <input class="datetime-local" type="datetime-local" name="deadline" id="deadline" v-model="deadline" value="{% if job.deadline %}{{ job.deadline }}{% endif %}">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <button class="button is-success" type="submit">Save changes</button>
+                    <button class="btn btn-dark" type="submit">Save</button>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'job_detail' job.id %}" class="btn btn-dark" style="color:white;">Back</a>
                 </div>
             </div>
         </form>
@@ -101,8 +105,13 @@
         data() {
             return {
                 title: '{{ job.title }}',
-                company_name: '{{ job.company_name }}',
+                Name_of_Researcher: '{{ job.Name_of_Researcher }}',
                 short_description: '{{ job.short_description }}',
+                Remuneration: '{{ job.Remuneration }}',
+                long_description: '{{ job.long_description }}',
+                deadline: '{{ job.deadline }}',
+                Ethic_Disclaimer: '{{ job.Ethic_Disclaimer }}',
+                Contact_Details: '{{ job.Contact_Details }}',
                 errors: []
             }
         },
@@ -112,11 +121,35 @@
                 this.errors = []
 
                 if (this.title === '') {
-                    this.errors.push('The title field is missing!')
+                    this.errors.push('The Name of Study field is empty!')
+                }
+
+                if (this.Name_of_Researcher === '') {
+                    this.errors.push('The Name of Researcher field is empty!')
                 }
 
                 if (this.short_description === '') {
-                    this.errors.push('The short description field is missing!')
+                    this.errors.push('The Short description field is missing!')
+                }
+
+                if (this.Remuneration === '') {
+                    this.errors.push('The Remuneration field is empty!')
+                }
+
+                if (this.long_description === '') {
+                    this.errors.push('The Participation Criteria & Expectations of Participants field is empty!')
+                }
+
+                if (this.deadline === '') {
+                    this.errors.push('The Application Deadline field is empty!')
+                }
+
+                if (this.Ethic_Disclaimer === '') {
+                    this.errors.push('The Ethic Disclaimer field is empty!')
+                }
+
+                if (this.Contact_Details === '') {
+                    this.errors.push('The Contact Details field is empty!')
                 }
 
                 if (this.errors.length) {

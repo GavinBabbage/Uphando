@@ -28,7 +28,5 @@ urlpatterns = [
     path('login/', loginPage, name='login'),
     path('jobs/', add_job, name='job'),
     path('admin/', admin.site.urls),
-    # path('dashboard/', include('apps.userprofile.urls')),
-    # path('notifications/', include('apps.notification.urls')),
     path('jobs/', include('apps.job.urls')),
 ]
