@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='job',
-            name='company_country',
+            name='Contact_Details',
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
         migrations.AddField(

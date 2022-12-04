@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
-
+{% load bootstrap5 %}
+{%load static%}
 {% block content %}
 
     <div id="search-app">
@@ -9,32 +10,16 @@
             <div class="columns">
                 <div class="column is-4">
                     <div class="field">
-                        <label>Enter the name of the study</label>
-
                         <div class="control">
-                            <input type="text" name="query" class="input" v-model="query">
+                            <input type="text" name="query" class="input" v-model="query" placeholder="Search something. . .">
                         </div>
                     </div>
 
-<!--                    <div class="field">-->
-<!--                        <label>Company size</label>-->
-
-<!--                        <div class="control">-->
-<!--                            <div class="select">-->
-<!--                                <select name="company_size" v-model="company_size">-->
-<!--                                    <option value="" selected>All</option>-->
-<!--                                    <option value="size_1-9">1-9</option>-->
-<!--                                    <option value="size_10-49">10-49</option>-->
-<!--                                    <option value="size_50-99">50-99</option>-->
-<!--                                    <option value="size_100">100+</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
                     <div class="field">
                         <div class="control">
-                            <button class="button is-success">Search</button>
+                            <button class="btn btn-dark">Search</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="{% url 'frontpage' %}" class="btn btn-dark" style="color:white;">Back</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +35,7 @@
                 class="notification mt-2"
             >
                 <h3 class="is-size-4">[[ job.title ]]</h3>
-                <p>[[ job.company_name ]]</p>
+                <p>[[ job.Name_of_Researcher ]]</p>
 
                 <a :href="job.url">View details</a>
             </div>
@@ -64,18 +49,17 @@
         data() {
             return {
                 query: '',
-<!--                company_name: '',-->
                 jobs: []
             }
         },
         delimiters: ['[[', ']]'],
         methods: {
             performSearch() {
+                console.log("hi")
                 var data = {
-                    'query': this.query
-<!--                    'company_name': this.company_name-->
+                    'query': this.query,
                 }
-
+                console.log(data)
                 fetch('/jobs/api/search/', {
                     method: 'POST',
                     headers: {
