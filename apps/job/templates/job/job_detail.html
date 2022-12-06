@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+{% load bootstrap5 %}
+{% load static %}
+{% load social_share %}
+
+{% block content %}
+<div class="flex-container" style="display:flex-block; overflow-x:scroll;">
+    <p class="is-size-1"><strong style="color:white">{{ job.title }}</strong></p>
+</div>
+
+    <div class="buttons">
+        {% post_to_facebook job.title '<i class="fa-brands fa-facebook-f fa-2x"></i>' %}
+        &nbsp;&nbsp;&nbsp;
+        {% post_to_twitter "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-brands fa-twitter fa-2x"></i>' %}
+        &nbsp;&nbsp;&nbsp;
+        {% post_to_whatsapp job.title '<i class="fa-brands fa-whatsapp fa-2x"></i>' %}
+        &nbsp;&nbsp;&nbsp;
+        {% post_to_telegram "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-brands fa-telegram fa-2x"></i>' %}
+        &nbsp;&nbsp;&nbsp;
+        {% send_email object.title "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-solid fa-envelope fa-2x"></i>' %}
+    </div>
+
+    <div class="flex-container" style="display:flex-block; overflow-x:scroll;">
+        <p class="is-size-3 font-italic" style="text-decoration:none; color:white">{{ job.short_description }}</p>
+        <p class="is-size-5" style="text-decoration:none; color:white;"><b>Name of Researcher: </b>{{ job.Name_of_Researcher}}</p>
+        <p class="is-size-5" style="text-decoration:none; color:white;"><b>Remuneration: </b>{{ job.Remuneration}}</p>
+        <p class="is-size-5" style="text-decoration:none; color:white;"><b>Participation Criteria & Expectations of Participants: </b>{{ job.long_description}}</p>
+        <p class="is-size-5" style="text-decoration:none; color:white;"><b>Ethic Disclaimer: </b>{{ job.Ethic_Disclaimer}}</p>
+        <p class="is-size-5" style="text-decoration:none; color:white;"><b>Contact Details: </b>{{ job.Contact_Details}}</p>
+        <p class="is-size-5" style="text-decoration:none; color:white;"><b>Application Deadline: </b>{{ job.deadline}}</p>
+    </div>
+        {% if job.created_by == request.user %}
+            <div class="buttons">
+                <a href="{% url 'edit_job' job.id %}" class="btn btn"><i class="fa-solid fa-pen-to-square fa-3x" aria-hidden="true" style="color:#000000">></i></a>
+                <div>
+                    
+                <!-- Trigger the modal with a button -->
+                  <button type="button" class="btn btn" data-toggle="modal" data-target="#myModal"><i class="fa-solid fa-trash fa-3x" aria-hidden="true" style="color:#000000"></i></button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><strong>Delete Post?</strong></h4>
+                            <div class="buttons">
+                                <button type="button" class="btn btn-close-dark" data-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark fa-2x"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                          <p>Are you sure you want to delete this post?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{% url 'delete_job' job.id %}" class="btn btn"><i class="fa-solid fa-trash fa-2x" aria-hidden="true" style="color:#000000"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'frontpage' %}" class="btn btn-dark" style="color:white;">Back</a>
+            </div>
+
+        {% else %}
+            <br>
+            <a href="{% url 'frontpage' %}" class="btn btn-dark" style="color:white;">Back</a>
+        {% endif %}
+
+        {% for application in job.applications.all %}
+            <a href="{% url 'view_application' application.id %}">{{ application.created_by.username }}</a>
+        {% endfor %}
+{% endblock %}
