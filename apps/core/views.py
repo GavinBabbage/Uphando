@@ -10,7 +10,7 @@ from apps.job.models import Job
 def frontpage(request):
     jobs = Job.objects.all()
 
-    # print(jobs)
+    print(jobs)
     for job in jobs:
         # if(job.deadline<datetime.date.today()):
         if (job.deadline < timezone.now()):
