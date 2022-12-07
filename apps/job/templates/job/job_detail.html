@@ -9,15 +9,15 @@
 </div>
 
     <div class="buttons">
-        {% post_to_facebook '<i class="fa-brands fa-facebook-f fa-2x"></i>' %}
+        {% post_to_facebook job.title '<i class="fa-brands fa-facebook-f fa-2x"></i>' %}
         &nbsp;&nbsp;&nbsp;
         {% post_to_twitter "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-brands fa-twitter fa-2x"></i>' %}
         &nbsp;&nbsp;&nbsp;
-        {% post_to_whatsapp '<i class="fa-brands fa-whatsapp fa-2x"></i>' %}
+        {% post_to_whatsapp job.title '<i class="fa-brands fa-whatsapp fa-2x"></i>' %}
         &nbsp;&nbsp;&nbsp;
         {% post_to_telegram "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-brands fa-telegram fa-2x"></i>' %}
         &nbsp;&nbsp;&nbsp;
-        {% send_email "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-solid fa-envelope fa-2x"></i>' %}
+        {% send_email object.title "New Notice posted: {{job.title}}. Check it out!" object_or_url '<i class="fa-solid fa-envelope fa-2x"></i>' %}
     </div>
 
     <div class="flex-container" style="display:flex-block; overflow-x:scroll;">
