@@ -99,7 +99,14 @@ WSGI_APPLICATION = 'Uphando.wsgi.application'
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'fpW2Me0psuqyDfoGqFug',
+        'HOST': 'containers-us-west-155.railway.app',
+        'PORT': '6827',
+    }
 }
 
 # CSRF token validation
