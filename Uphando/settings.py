@@ -96,8 +96,7 @@ WSGI_APPLICATION = 'Uphando.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#DATABASE_URL = os.getenv("DATABASE_URL")
-DATABASE_URL = 'postgresql://postgres:2d0DYP4VoSGKg1zbx3Xk@containers-us-west-26.railway.app:6808/railway'
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 DATABASES = {
     'default': {
