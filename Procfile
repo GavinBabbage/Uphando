@@ -1,1 +1,1 @@
-web: python manage.py migrate --fake Uphando zero && python manage.py migrate Uphando && gunicorn 'Uphando.wsgi'
+web: python manage.py migrate --fake zero && python manage.py migrate && gunicorn 'Uphando.wsgi'
