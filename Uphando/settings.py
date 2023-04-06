@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     #app created
     'apps.core',
     'apps.job',
+    'Uphando',
 ]
 
 MIDDLEWARE = [
