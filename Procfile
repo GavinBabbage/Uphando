@@ -1,1 +1,1 @@
-web: gunicorn 'Uphando.wsgi'
+web: python manage.py migrate && gunicorn 'Uphando.wsgi'
