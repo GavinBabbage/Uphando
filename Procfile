@@ -1,1 +1,1 @@
-web: python manage.py migrate --fake apps zero && python manage.py migrate apps && gunicorn 'Uphando.wsgi'
+web: python manage.py migrate --fake apps.job zero && python manage.py migrate apps.job && gunicorn 'Uphando.wsgi'
