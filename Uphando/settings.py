@@ -100,16 +100,16 @@ WSGI_APPLICATION = 'Uphando.wsgi.application'
 #DATABASE_URL = os.getenv("DATABASE_URL")
 
 #to run Oon nwabisa's railwayapp
-DATABASE_URL = 'postgresql://postgres:NlriMl9rPdkcii8s6WGf@containers-us-west-149.railway.app:7948/railway'
+DATABASE_URL = 'postgresql://postgres:5o5wv8ZnsEGVfaBnuwgS@containers-us-west-138.railway.app:7854/railway'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'NlriMl9rPdkcii8s6WGf',
-        'HOST': 'containers-us-west-149.railway.app',
-        'PORT': '7948',
+        'PASSWORD': '5o5wv8ZnsEGVfaBnuwgS',
+        'HOST': 'containers-us-west-138.railway.app',
+        'PORT': '7854',
     }
 }
 
