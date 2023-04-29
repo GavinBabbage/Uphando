@@ -27,7 +27,7 @@
                 <label>Name of Study</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="title" id="id_title" v-model="title">
+                    <input class="input" type="text" name="title" id="id_title" v-model="title" value="{% if job.title %}{{ job.title }}{% endif %}">
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                 <label>Name of Researcher</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="Name_of_Researcher" id="id_Name_of_Researcher" v-model="Name_of_Researcher" value="{% if job.title %}{{ job.title }}{% endif %}">
+                    <input class="input" type="text" name="Name_of_Researcher" id="id_Name_of_Researcher" v-model="Name_of_Researcher" value="{% if job.Name_of_Researcher %}{{ job.Name_of_Researcher }}{% endif %}">
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
             </div>
 
             <div class="field">
-                <label>Remuneration</label>
+                <label>Benefits/Risks</label>
 
                 <div class="control">
                     <input class="input" type="text" name="Remuneration" id="id_Remuneration" v-model="Remuneration" value="{% if job.Remuneration %}{{ job.Remuneration }}{% endif %}">
@@ -64,7 +64,7 @@
             </div>
 
             <div class="field">
-                <label>Ethic Disclaimer</label>
+                <label>Ethic Disclaimers</label>
 
                 <div class="control">
                     <input class="input" type="text" name="Ethic_Disclaimer" id="id_Ethic_Disclaimer" v-model="Ethic_Disclaimer" value="{% if job.Ethic_Disclaimer %}{{ job.Ethic_Disclaimer }}{% endif %}">
