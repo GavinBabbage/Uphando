@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,7 +48,6 @@ INSTALLED_APPS = [
     #app created
     'apps.core',
     'apps.job',
-    'Uphando',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +58,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 MESSAGE_TAGS = {
@@ -97,25 +94,13 @@ WSGI_APPLICATION = 'Uphando.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#DATABASE_URL = os.getenv("DATABASE_URL")
-
-#to run Oon nwabisa's railwayapp
-DATABASE_URL = 'postgresql://postgres:5o5wv8ZnsEGVfaBnuwgS@containers-us-west-138.railway.app:7854/railway'
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': '5o5wv8ZnsEGVfaBnuwgS',
-        'HOST': 'containers-us-west-138.railway.app',
-        'PORT': '7854',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# CSRF token validation
-# CSRF_TRUSTED_ORIGINS = ['https://web-production-2913.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
