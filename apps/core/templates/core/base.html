@@ -24,7 +24,7 @@
             margin-left: auto; /* Pushes the right side elements to the right */
         }
         .navbar-item {
-            margin: -8px; /* Set margin to 2mm (approximately 8px) */
+            margin: -7px; /* Set margin to 2mm (approximately 8px) */
         }
     </style>
 
@@ -63,7 +63,9 @@
                 {% if request.user.is_authenticated %}
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a href="{% url 'logout' %}" class="button is-danger" style="text-decoration: none;">Log out</a>
+                            <a href="{% url 'logout' %}" class="navbar-item fa-2x">
+                                <i class="fa-solid fa-power-off" aria-hidden="true" style="color:#000000"></i>
+                            </a>
                         </div>
                     </div>
                 {% endif %}
