@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+
+<html>
+    <head>
+        <style>
+            body,
+            html
+            {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                background: #7abecc !important;
+            }
+
+        </style>
+
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit=no">
+
+        <!-- Title -->
+        <title>Uphando</title>
+
+        <!-- Styles -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+        <link rel="stylesheet" type="text/css" href="{%static 'css/style.css'%}">
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+    </head>
+
+    <body>
+        <div class="flex-container" style="flex">
+            <!-- Navbar -->
+            <nav class="navbar is-light" style="display:flex;">
+                <div class="navbar-brand">
+                    <a href="{% url 'frontpage' %}" class="navbar-item fa-2x" style="color:#000000; text-decoration: none;"><strong><i class="fa-solid fa-hand-holding-hand"></i>&nbsp;Uphando</strong></a>
+                </div>
+
+                <div class="navbar-menu-light" style="display:flex;">
+                    <div class="navbar-end" style="display:inline-flex;">
+                        <a href="{% url 'search' %}" class="navbar-item fa-3x"><i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#000000"></i></a>
+                        <div class="navbar-item" style="display:inline-flex;">
+                            <div class="buttons" style="display:inline-flex;">
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'add_job' %}" class="btn btn"><strong><i class="fa-solid fa-square-plus fa-4x" aria-hidden="true" style="color:#000000"></i></strong></a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="{% url 'logout' %}" class="button is-danger" style="text-decoration: none;">Log out</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="btn btn"><strong><i class="fa-solid fa-square-plus fa-4x" aria-hidden="true" style="color:#000000"></i></strong></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+
+        <!-- dispay messages if any (taken from back end) -->
+        <div class="alert-dark m2" id="message" role></div>
+            {% if messages %}
+                <ul class="messages" id="msg" style="list-style-type:none;">
+                    {% for message in messages %}
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>&nbsp;&nbsp;•&nbsp;&nbsp;{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+        <div class=" row justify-content-center" align="center">
+	    <h4 class=”alert-heading”><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;&nbsp;Important notice to participants:</h4>
+            <p class=”mb-0”>Please ensure that you verify that the study has been granted ethical approval by a reputable institution or department as stated in the researcher’s ethical disclaimer prior to participating.</p>
+        </div>
+
+
+        <!-- Main content -->
+        <section class="section">
+            {% block content %}
+            {% endblock %}
+        </section>
+        <!-- End Main content -->
+
+        <!-- Scripts -->
+        <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- Script to ensure that messages that pop up disappear win 2 seconds -->
+        <script>
+            setTimeout(function(){
+              if ($('#msg').length > 0) {
+                $('#msg').remove();
+              }
+            }, 5000)
+        </script>
+
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
